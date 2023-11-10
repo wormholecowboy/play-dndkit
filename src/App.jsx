@@ -10,6 +10,16 @@ function App() {
     const [guys, setGuys] = useState(["moe", "larry", "curly"])
     const handleDragEnd = (event) => {
         console.log('drag end fired')
+        const { active, over } = event;
+
+        if (active.id !== over.id) {
+            setGuys(items => {
+                const activeIndex = items.indexOf(active.id);
+                const overIndex = items.indexOf(over.id);
+
+                return arrayMove(items, activeIndex, overIndex);
+            })
+        }
     }
 
     return (
